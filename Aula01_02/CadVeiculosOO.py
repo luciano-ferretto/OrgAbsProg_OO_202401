@@ -1,4 +1,3 @@
-
 from Veiculo import Veiculo
 def cadastrar():
     print ("Digite a marca do veículo: ")
