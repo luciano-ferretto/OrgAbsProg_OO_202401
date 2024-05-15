@@ -1,9 +1,9 @@
 import java.time.Year;
 
-class Veiculo {
-    String marca;
-    String modelo;
-    int ano;
+public class Veiculo {
+    private String marca;
+    private String modelo;
+    private int ano;
 
     public Veiculo(){
         this("","",1900);
@@ -24,16 +24,25 @@ class Veiculo {
         int tempoUso = anoBase - this.ano;
         return tempoUso;
     }
-
-    Veiculo criarCopiaAPartirDeMim() {
-        Veiculo novo = new Veiculo();
-        novo.marca = this.marca;
-        novo.modelo = this.modelo;
-        novo.ano = this.ano;
-        return novo;
+    
+    //Métodos Getters and Setters
+    public String getMarca() {
+        return marca;
     }
-    Veiculo criarCopiaAPartirDeMimERRADO() {
-        return this;
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    public String getModelo() {
+        return modelo;
+    }
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+    public int getAno() {
+        return ano;
+    }
+    public void setAno(int ano) {
+        this.ano = ano;
     }
     
     void ligar() {
