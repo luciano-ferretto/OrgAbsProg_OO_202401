@@ -1,9 +1,19 @@
 import java.time.Year;
 
-public class Veiculo {
+public abstract class Veiculo {
     private String marca;
     private String modelo;
     private int ano;
+
+    //sobrescrever nas classes filhas
+    public abstract double calcularImposto();
+
+    @Override
+    public String toString() {
+        return "Veículo: " + this.getMarca()
+            + " " + this.getModelo()
+            + " " + this.getAno();
+    }
 
     public Veiculo(){
         this("","",1900);
