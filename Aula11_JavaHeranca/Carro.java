@@ -5,6 +5,8 @@ public class Carro extends Veiculo {
     public double calcularImposto() {
         return 1000.0;
     }
+
+
     @Override
     public String toString() {
         return super.toString()
@@ -17,10 +19,11 @@ public class Carro extends Veiculo {
     public void setNumeroPortas(int numeroPortas) {
         this.numeroPortas = numeroPortas;
     }
-    public Carro(String marca, String modelo, int ano, int numeroPortas) {
-        super(marca, modelo, ano);
+    public Carro(String marca, String modelo, int ano, String placa, int numeroPortas) {
+        super(marca, modelo, ano, placa);
         this.numeroPortas = numeroPortas;
     }
-    
+
+   
     
 }

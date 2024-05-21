@@ -4,6 +4,9 @@ public abstract class Veiculo {
     private String marca;
     private String modelo;
     private int ano;
+    private String placa;
+
+    public static final int MAX_TEMPO_USO = 30;
 
     //sobrescrever nas classes filhas
     public abstract double calcularImposto();
@@ -16,21 +19,22 @@ public abstract class Veiculo {
     }
 
     public Veiculo(){
-        this("","",1900);
+        this("","",1900,"");
     }
-    public Veiculo(String marca, String modelo, int ano) {
+    public Veiculo(String marca, String modelo, int ano, String placa) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+        this.placa = placa;
     }
 
-    int calcularTempoDeUso() {
+    public final int calcularTempoDeUso() {
         int anoAtual = Year.now().getValue();
         //int tempoUso = anoAtual - this.ano;
         //return tempoUso;
         return this.calcularTempoDeUso(anoAtual);
     }
-    int calcularTempoDeUso(int anoBase) {
+    public final int calcularTempoDeUso(int anoBase) {
         int tempoUso = anoBase - this.ano;
         return tempoUso;
     }
@@ -54,7 +58,13 @@ public abstract class Veiculo {
     public void setAno(int ano) {
         this.ano = ano;
     }
-    
+    public String getPlaca() {
+        return placa;
+    }
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
     void ligar() {
         System.out.println("Veículo Ligado!");
     }

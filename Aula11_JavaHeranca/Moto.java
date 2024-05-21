@@ -1,4 +1,4 @@
-public class Moto extends Veiculo{
+public final class Moto extends Veiculo{
     private boolean partidaEletrica;
 
 
@@ -17,8 +17,8 @@ public class Moto extends Veiculo{
     public void setPartidaEletrica(boolean partidaEletrica) {
         this.partidaEletrica = partidaEletrica;
     }
-    public Moto(String marca, String modelo, int ano, boolean partidaEletrica) {
-        super(marca, modelo, ano);
+    public Moto(String marca, String modelo, int ano, String placa, boolean partidaEletrica) {
+        super(marca, modelo, ano, placa);
         this.partidaEletrica = partidaEletrica;
     }
 
