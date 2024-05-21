@@ -73,7 +73,12 @@ public class CadVeiculo {
             boolean partida = partidaEletrica == 1 ? true : false;
             veiculoAdd = new Moto(marca, modelo, ano, placa, partida);
         } 
-        veiculoService.save(veiculoAdd);
+        try {
+            veiculoService.save(veiculoAdd);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            scan.nextLine();
+        }
     }
 
     private static void imprimirVeiculos() {

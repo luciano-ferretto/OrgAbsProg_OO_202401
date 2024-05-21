@@ -12,8 +12,11 @@ public class VeiculoService {
         this.veiculosDB = new ArrayList<>();
     }
     
-    public Veiculo save(Veiculo veiculo) {
-        
+    public Veiculo save(Veiculo veiculo) throws Exception {
+        if (veiculo == null)
+            throw new Exception("Objeto nullo");
+        if (veiculo.getModelo() == null || veiculo.getModelo().isEmpty())
+            throw new Exception("Campo Modelo não pode ser em branco");
         veiculosDB.add(veiculo);
         return veiculo;
     }
