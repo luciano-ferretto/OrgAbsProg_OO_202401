@@ -1,3 +1,4 @@
+package entities;
 import java.time.Year;
 
 public abstract class Veiculo {
@@ -13,9 +14,10 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
-        return "Veículo: " + this.getMarca()
+        return this.getMarca()
             + " " + this.getModelo()
-            + " " + this.getAno();
+            + " " + this.getAno()
+            + " - Placa: " + this.getPlaca();
     }
 
     public Veiculo(){

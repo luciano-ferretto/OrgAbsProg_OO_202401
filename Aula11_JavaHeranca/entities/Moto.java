@@ -1,3 +1,4 @@
+package entities;
 public final class Moto extends Veiculo{
     private boolean partidaEletrica;
 
@@ -5,9 +6,7 @@ public final class Moto extends Veiculo{
     @Override
     public String toString() {
         var partida = this.getPartidaEletrica() ? "Sim" : "Não";
-        return "Veículo: " + this.getMarca()
-            + " " + this.getModelo()
-            + " " + this.getAno()
+        return super.toString()
             + " - Part. Elétrica: " + partida;
     }
 

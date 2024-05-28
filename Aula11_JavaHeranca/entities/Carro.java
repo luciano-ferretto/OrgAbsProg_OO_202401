@@ -1,3 +1,4 @@
+package entities;
 public class Carro extends Veiculo {
     private int numeroPortas;
     
