@@ -1,13 +1,16 @@
-public class Cesta {
-    private Object[] itens;
+public class Cesta<E> {
+    private E[] itens;
     private int tamanho;
+    
+    
     // Construtor para inicializar a cesta com um tamanho fixo
+    @SuppressWarnings("unchecked")
     public Cesta(int capacidade) {
-        itens = new Object[capacidade];
+        itens = (E[]) new Object[capacidade];
         tamanho = 0;
     }
     // Método para inserir um objeto na cesta
-    public void inserir(Object o) {
+    public void inserir(E o) {
         if (tamanho < itens.length) {
             itens[tamanho++] = o;
         } else {
@@ -15,9 +18,9 @@ public class Cesta {
         }
     }
     // Método para obter o último objeto adicionado na cesta e removê-lo (LIFO)
-    public Object getProximo() {
+    public E getProximo() {
         if (tamanho > 0) {
-            Object item = itens[--tamanho];
+            E item = itens[--tamanho];
             itens[tamanho] = null; // Remove referência para permitir garbage collection
             return item;
         } else {
