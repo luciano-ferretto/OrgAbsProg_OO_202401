@@ -1,15 +1,35 @@
 package br.edu.atitus.denguealerta.entities;
 
 import br.edu.atitus.denguealerta.components.TipoUsuario;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "usuario")
 public class UsuarioEntity extends GenericEntity {
 	
+	@Column(length = 100,nullable = false)
 	private String nome;
+	
+	@Column(length = 100,nullable = false)
 	private String email;
+	
+	@Column(length = 250,nullable = false)
 	private String endereco;
+	
+	@Column(length = 15,nullable = false)
 	private String cpf;
+	
+	@Column(length = 100,nullable = false)
 	private String senha;
+	
+	@Column(nullable = false)
+	@Enumerated(EnumType.ORDINAL)
 	private TipoUsuario tipo;
+	
 	public String getNome() {
 		return nome;
 	}

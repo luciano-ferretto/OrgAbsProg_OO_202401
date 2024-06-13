@@ -17,9 +17,9 @@ public class AuthController {
 	
 	private final UsuarioService usuarioService;
 	
-	public AuthController() {
+	public AuthController(UsuarioService usuarioService) {
 		super();
-		this.usuarioService = new UsuarioService();
+		this.usuarioService = usuarioService;
 	}
 
 	@PostMapping("/signup")
