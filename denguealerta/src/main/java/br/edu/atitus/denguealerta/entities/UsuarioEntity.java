@@ -1,5 +1,10 @@
 package br.edu.atitus.denguealerta.entities;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import br.edu.atitus.denguealerta.components.TipoUsuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
-public class UsuarioEntity extends GenericEntity {
+public class UsuarioEntity extends GenericEntity implements UserDetails{
 	
 	@Column(length = 100,nullable = false)
 	private String nome;
@@ -65,6 +70,19 @@ public class UsuarioEntity extends GenericEntity {
 	}
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+	@Override
+	public String getUsername() {
+		return this.email;
 	}
 	
 	

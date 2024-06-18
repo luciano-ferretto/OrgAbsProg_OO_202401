@@ -1,5 +1,6 @@
 package br.edu.atitus.denguealerta.repositories;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,7 @@ public interface UsuarioRepository extends GenericRepository<UsuarioEntity>{
 	boolean existsByCpfAndIdNot(String cpf, UUID id);
 	
 	boolean existsByEmailAndIdNot(String email, UUID id);
+	
+	Optional<UsuarioEntity> findByEmail(String email);
 
 }

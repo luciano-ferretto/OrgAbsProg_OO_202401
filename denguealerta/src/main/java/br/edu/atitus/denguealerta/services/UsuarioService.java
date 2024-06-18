@@ -3,6 +3,10 @@ package br.edu.atitus.denguealerta.services;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.edu.atitus.denguealerta.components.Validador;
@@ -11,7 +15,7 @@ import br.edu.atitus.denguealerta.repositories.GenericRepository;
 import br.edu.atitus.denguealerta.repositories.UsuarioRepository;
 
 @Service
-public class UsuarioService extends GenericService<UsuarioEntity> {
+public class UsuarioService extends GenericService<UsuarioEntity> implements UserDetailsService{
 
 	private final UsuarioRepository usuarioRepository;
 
@@ -38,8 +42,8 @@ public class UsuarioService extends GenericService<UsuarioEntity> {
 		if (objeto.getSenha() == null || objeto.getSenha().isEmpty())
 			throw new Exception("Senha informada inválida");
 
-		if (!Validador.validaCPF(objeto.getCpf()))
-			throw new Exception("CPF informado inválido");
+		//if (!Validador.validaCPF(objeto.getCpf()))
+		//	throw new Exception("CPF informado inválido");
 		if (!Validador.validaEmail(objeto.getEmail()))
 			throw new Exception("E-mail informado inválido");
 
@@ -54,7 +58,24 @@ public class UsuarioService extends GenericService<UsuarioEntity> {
 			if (usuarioRepository.existsByEmail(objeto.getEmail()))
 				throw new Exception("Já existe usuário com este e-mail");
 		}
+		
+		String hashSenha = new BCryptPasswordEncoder().encode(objeto.getSenha());
+		objeto.setSenha(hashSenha);
+		
 		// TODO validar se usuário tem permissão para o tipo escolhido
 	}
 
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		var user = this.usuarioRepository.findByEmail(email)
+			.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+		return user;
+	}
+
 }
+
+
+
+
+
+
