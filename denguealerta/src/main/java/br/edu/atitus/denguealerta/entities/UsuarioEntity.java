@@ -5,6 +5,8 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.edu.atitus.denguealerta.components.TipoUsuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +30,7 @@ public class UsuarioEntity extends GenericEntity implements UserDetails{
 	@Column(length = 15,nullable = false)
 	private String cpf;
 	
+	@JsonIgnore
 	@Column(length = 100,nullable = false)
 	private String senha;
 	
@@ -76,6 +79,8 @@ public class UsuarioEntity extends GenericEntity implements UserDetails{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@JsonIgnore
 	@Override
 	public String getPassword() {
 		return this.senha;

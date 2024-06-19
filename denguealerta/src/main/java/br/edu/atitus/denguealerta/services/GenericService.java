@@ -9,11 +9,11 @@ public abstract class GenericService<E extends GenericEntity> {
 	
 	protected abstract GenericRepository<E> getRepository();
 	
-	public final void save(E objeto) throws Exception {
+	public final E save(E objeto) throws Exception {
 		if (objeto == null)
 			throw new Exception("Objeto nulo");
 		validate(objeto);
-		getRepository().save(objeto);
+		return getRepository().save(objeto);
 	}
 
 }
