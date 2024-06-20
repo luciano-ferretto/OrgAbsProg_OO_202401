@@ -31,7 +31,7 @@ public class AuthToken extends OncePerRequestFilter {
 		String jwt = JwtUtils.getJwtFromRequest(request);
 		if (jwt != null && JwtUtils.validaJwtToken(jwt)) {
 			String username = JwtUtils.getUserNameFromJwtToken(jwt);
-			var user = this.usuarioRepository.findByEmail(username);
+			var user = this.usuarioRepository.findByEmail(username).get();
 			UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, null);
 			
 			auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
